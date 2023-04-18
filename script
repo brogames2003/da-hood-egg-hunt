@@ -1,0 +1,76 @@
+-- made by suley wrongfully stolen by prime >_<<<<
+
+--{ GG / SILENTAIM }--
+
+
+getgenv().EggEsp = true
+getgenv().EggNotifications = true
+getgenv().EggTp = true
+
+
+
+local Client = game.Players.LocalPlayer
+local eggPath = workspace.Ignored
+local eggNotification = "Egg Spawned!"
+local RS = game:GetService("RunService")
+local eggs = {}
+
+spawn(function()
+    while true do 
+        for _, v in pairs(eggPath:GetChildren()) do   
+            if string.find(v.Name, "Egg") then   
+                if not v:FindFirstChild("EggESP") then
+                    if getgenv().EggEsp then
+                        addEggEsp(v)
+                    end
+                    if getgenv().EggNotifications then
+                        eggNotifications()
+                    end
+                    if getgenv().EggTp then
+                        eggTeleport()
+                    end
+                end 
+            end   
+        end 
+        wait(0.5)
+    end
+end)
+
+function addEggEsp(v)
+    local b = Instance.new("BillboardGui")  
+    local t = Instance.new("TextLabel")  
+    b.Parent = v   
+    b.AlwaysOnTop = true  
+    b.LightInfluence = 1  
+    b.Size = UDim2.new(0, 20, 0, 20)  
+    b.StudsOffset = Vector3.new(0, 2, 0)  
+    b.Name = "EggESP"  
+    t.Parent = b
+    t.TextColor3 = Color3.new(0.2, 0.3, 1.0) 
+    t.BackgroundColor3 = Color3.new(1.0, 1.0, 1.0)  
+    t.BackgroundTransparency = 1  
+    t.Size = UDim2.new(1, 0, 1, 0)  
+    t.Text = v.Name 
+    t.TextScaled = true
+end
+
+function eggNotifications()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "GG/silentaim",
+        Text = eggNotification,
+        Duration = 5
+    })
+end
+
+function eggTeleport()
+    eggs = {} 
+    for _, v in pairs(workspace.Ignored:GetChildren()) do
+        if string.find(v.Name, "Egg") then
+            table.insert(eggs, v)
+        end
+    end
+    for _, v in pairs(eggs) do
+        Client.Character.HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0, 3, 0)
+        wait(1)
+    end
+end
