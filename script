@@ -1,8 +1,3 @@
--- made by suley wrongfully stolen by prime >_<<<<
-
---{ GG / SILENTAIM }--
-
-
 getgenv().EggEsp = true
 getgenv().EggNotifications = true
 getgenv().EggTp = true
@@ -56,7 +51,7 @@ end
 
 function eggNotifications()
     game.StarterGui:SetCore("SendNotification", {
-        Title = "GG/silentaim",
+        Title = "(brogame's cool script)",
         Text = eggNotification,
         Duration = 5
     })
